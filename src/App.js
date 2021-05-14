@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import useLocalStorage from "./useLocalStorage";
+import useUpdateLogger from "./useUpdateLogger";
 
 function App() {
+  const [name, setName] = useLocalStorage("name", "");
+  useUpdateLogger(name);
+  const input = {
+    height: "100px",
+    width: "80%",
+    margin: "20px auto",
+    color: "#111",
+    padding: "10px",
+    fontSize: "15px",
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <input
+      type="text"
+      style={input}
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
   );
 }
 
